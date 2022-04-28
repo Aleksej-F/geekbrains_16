@@ -35,7 +35,7 @@ class Controller extends BaseController
 				'title' => $faker->jobTitle(),
 				'author' => $faker->name(),
 				'image'  => $faker->imageUrl(),
-				'description' => $faker->text(150),
+				'description' =>  $faker->text(150),
 				'created_at' => now('Europe/Moscow')
 			];
 		}

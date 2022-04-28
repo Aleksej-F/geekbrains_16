@@ -16,6 +16,9 @@ class NewsController extends Controller
 
 	public function show(int $id)
 	{
+		if($id > 11) {
+			abort(404);
+		}
 		$news = $this->getNews($id);
 		return view('news.show', [
 			'news' => $news
