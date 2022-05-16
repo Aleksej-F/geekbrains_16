@@ -20,8 +20,8 @@ class NewsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
-     */
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+	 */
     public function create()
     {
         return view('admin.news.create');
@@ -35,7 +35,12 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+		$request->validate([
+			'title' => ['required', 'string']
+		]);
+
+
+        return response()->json($request->only(['title', 'author', 'status', 'description']), 201);
     }
 
     /**
@@ -57,7 +62,6 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**
