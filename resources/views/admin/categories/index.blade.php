@@ -15,10 +15,27 @@
             <tr>
                 <th scope="col">#ID</th>
                 <th scope="col">Наименование</th>
+                <th scope="col">Описание</th>
                 <th scope="col">Дата добавления</th>
+                <th scope="col">Управление</th>
             </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+               @forelse($categories as $category)
+                   <tr>
+                       <td>{{ $category->id }}</td>
+                       <td>{{ $category->title }}</td>
+                       <td>{{ $category->description }}</td>
+                       <td>{{ $category->created_at }}</td>
+                       <td><a href="{{ route('admin.categories.edit', ['category' => $category->id]) }}" style="font-size: 12px;">Ред.</a> &nbsp;
+                           <a href="javascript:;" style="color:red; font-size: 12px;">Уд.</a></td>
+                   </tr>
+               @empty
+                   <tr>
+                       <td colspan="4">Записей нет</td>
+                   </tr>
+               @endforelse
+            </tbody>
         </table>
     </div>
 @endsection
