@@ -10,6 +10,7 @@
     </div>
 
     <div class="table-responsive">
+        @include('inc.messages')
         <table class="table table-striped table-sm">
             <thead>
             <tr>
@@ -24,7 +25,7 @@
                @forelse($categories as $category)
                    <tr>
                        <td>{{ $category->id }}</td>
-                       <td>{{ $category->title }}</td>
+                       <td>{{ $category->title }} ( {{ $category->news_count }}) </td>
                        <td>{{ $category->description }}</td>
                        <td>{{ $category->created_at }}</td>
                        <td><a href="{{ route('admin.categories.edit', ['category' => $category->id]) }}" style="font-size: 12px;">Ред.</a> &nbsp;
@@ -37,5 +38,7 @@
                @endforelse
             </tbody>
         </table>
+
+        {{ $categories->links() }}
     </div>
 @endsection

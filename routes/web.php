@@ -37,5 +37,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
 	Route::resource('/news', AdminNewsController::class);
 });
 
-
-
+Route::get('/collection', function() {
+	$collection = collect(['Nick', 'Ben', 'Ann', 'Jil', 'Fred', 'Pit', 'July']);
+	dd($collection->map(function($item) {
+		return strtoupper($item);
+	})->filter(function($item) {
+		if(strlen($item) > 3) {
+			 return $item;
+		}
+	})->sort()->toJson());
+});

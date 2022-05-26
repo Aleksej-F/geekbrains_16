@@ -9,15 +9,21 @@
     </div>
 
     <div class="row">
-        @if($errors->any())
-            @foreach($errors->all() as $error)
-                <x-alert type="danger" :message="$error"></x-alert>
-            @endforeach
-        @endif
+        @include('inc.messages')
 
         <form method="post" action="{{ route('admin.news.store') }}">
             @csrf
 
+            <div class="form-group">
+                <label for="category_id">Категория</label>
+                <select class="form-control" name="category_id" id="category_id">
+                    @foreach($categories as $category)
+                        <option value="{{$category->id}}"
+                        @if($category->id === old('category_id')) selected @endif
+                        >{{ $category->title }}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class="form-group">
                 <label for="title">Наименование</label>
                 <input type="text" id="title" name="title" class="form-control" value="{{ old('title') }}">
